@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>위치탐색선택자</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(
+		function() {
+			$("li").first().css("background-color", "#cdcdcd");
+			$("td").first().css("background-color", "#0e0efe");
+			$("tr").first().css("background-color", "#333333");
+			
+			$("li").last().css("background-color", "#808080");
+			$("td").last().css("background-color", "#34d5eb");
+			$("tr").last().css("background-color", "#404040");
+			
+			$("li:odd").text("♤")
+						.css("color", "green")
+						.on("mouseover", function() {
+							let color = $(this).css("color");
+							if(color == "rgb(0, 128, 0)") {
+								color = "yellow";
+								$(this).css("color", color);
+							} else {
+								color = "green";
+								$(this).css("color", color);
+							}
+							
+						});
+			
+			$("li:even").text("♡").css("color", "pink");
+		
+			let songs = ["We are the Champions", "Bicycle", "Flash", "Innuendo"];
+			
+			// HTML태그 추가해서도 넣어보기
+			let htmlStr = "";
+			$.each(songs, function(index, item) {
+				htmlStr += (item + " ");
+			});
+			
+			$("#content").text(htmlStr);
+			
+			$("td").each(function(index, item) {
+				if(index % 3 == 0) {
+					$(this).addClass("highlight-" + 0);
+				} else if(index % 3 == 1) {
+					$(this).addClass("highlight-" + 1);
+				} else {
+					$(this).addClass("highlight-" + 2);
+				}
+			});
+			
+			$("li").each(function(index, item) {
+				console.log(item);
+				console.log($(this).text());
+				console.log("----");
+			});
+			
+			$("a[href$='.com']").css("color", "yellow");
+			$("a[href$='.jp']").css("color", "yellowgreen");
+			
+			$("input[type='text']").css("width", "100%");
+			
+			$(":text").css("background-color", "#bb00ee");
+			
+			$(":submit").css("color", "green")
+						.css("border", "none")
+						.css("width", "100%")
+						.css("height", "30px")
+						.css("font-size", "24px")
+						.css("font-family", "궁서");
+		  $(":button").click(function(){
+			    $("*").removeAttr("style");
+			    $("*").removeClass();
+		  });
+		}		
+	);
+	
+	function checkValues() {
+		let id = $("#id").val();
+		
+		alert(id);
+		
+		return false;
+	}
+</script>
+<style>
+	.highlight-0 {
+		background-color: blue;
+	}
+	
+	.highlight-1 {
+		background-color: green;
+	}
+	
+	.highlight-2 {
+		background-color: teal;
+	}
+</style>
+</head>
+<body>
+<input type = "button" value = "초기화">
+<h1>위치탐색선택자</h1>
+<h2>ul을 대상으로</h2>
+<ul>
+	<li>1번째요소</li>
+	<li>2번째요소</li>
+	<li>3번째요소</li>
+	<li>4번째요소</li>
+	<li>5번째요소</li>
+	<li>6번째요소</li>
+</ul>
+<h2>table을 대상으로</h2>
+<table>
+	<tr>
+		<th>번호</th><th>이름</th><th>주소</th>
+	</tr>
+	<tr>
+		<td>1</td><td>홍길동</td><td>장성군</td>
+	</tr>
+	<tr>
+		<td>2</td><td>고길동</td><td>쌍문동</td>
+	</tr>
+	<tr>
+		<td>3</td><td>이길동</td><td>알 수 없음</td>
+	</tr>
+</table>
+<div id = "content">
+
+</div>
+<a href = "https://www.google.com">구글</a><br>
+<a href = "https://www.daum.net">다음</a><br>
+<a href = "https://www.yahoo.co.jp">야후</a>
+<form onsubmit = "return checkValues();">
+	<input type = "text" id = "id"><br>
+	<input type = "text" id = "id1"><br>
+	<input type = "text" id = "id2"><br>
+	<input type = "text" id = "id3"><br>
+	<input type = "text" id = "id4"><br>
+	<input type = "submit" value = "submit!">
+</form>
+</body>
+</html>
