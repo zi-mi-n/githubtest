@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            // html(), text()
+            // 모두 덮어쓰기가 되는 것에 주의!!
+            //$("body").text("Hello World!");
+            //$("body").html("HTML");
+
+            //$("body").html("<ul>");
+            //$("body").html("<li>");
+            //$("body").html("두리쥬아");
+            //$("body").html("</li>");
+            //$("body").html("</ul>");
+
+            let listStr = "<ul>";
+            let listArray = ["마지", "두리", "세찌", "꽁지"];
+            $.each(listArray, function(i, item){
+                listStr += "<li>";
+                listStr += (i + " " + item);
+                listStr += "</li>";
+            });
+            listStr += "</ul>";
+
+            $("body").append(listStr);
+
+            $(":button").on("click", function() {
+                setImage(this);
+            });
+
+            $(":password:last").on("keyup", function() {
+                checkPWValues();
+            });
+        });
+
+        function setImage(btn) {
+            let name = $(btn).val();
+
+            if(name == "사과") {
+                $("#picture").attr("src", "https://cdn3.iconfinder.com/data/icons/food-set-3/91/Food_C240-256.png");
+            } else if (name == "포도") {
+                $("#picture").attr("src", "https://cdn3.iconfinder.com/data/icons/food-set-3/91/Food_C229-256.png");
+            } else if (name == "아보카도") {
+                $("#picture").attr("src", "https://cdn3.iconfinder.com/data/icons/food-set-3/91/Food_C230-256.png");
+            }
+        }
+
+        function checkPWValues() {
+            let pw1 = $(":password:first").val();
+            let pw2 = $(":password:last").val();
+
+            if(pw1 == pw2) {
+                $("input[type='checkbox']").prop("checked", true)
+                                            .next().text("비밀번호가 일치합니다!");
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- 새 요소 생성 -->    
+<!-- 요소 복제 -->
+<!-- 요소 제거 -->
+<!-- 요소의 속성을 추가, 변경, 삭제-->
+<img id = "picture"><br>
+<input type = "button" value = "사과"><br>
+<input type = "button" value = "포도"><br>
+<input type = "button" value = "아보카도"><br>
+<form>
+    이름 <input type = "text"><br>
+    아이디 <input type = "text"><br>
+    비밀번호 <input type = "password"><br>
+    비밀번호확인 <input type = "password"><br>
+    <input type = "checkbox"> <span>비밀번호가 일치하지 않습니다!</span>
+</form>
+</body>
+</html>
